@@ -1,34 +1,21 @@
-for (let i = 0; i <= 20; i++) {
-  //8から24までの数字がランダムに出てくる。
-  let min_animation = 8; //最小値
-  let max_animation = 23; //最大値
-  let random_animation =
-    Math.floor(Math.random() * (max_animation + 1 - min_animation)) +
-    min_animation;
-  // console.log(random_animation);
-
-  let min_left = 0;
-  let max_left = 100;
-  let random_left =
-    Math.floor(Math.random() * (max_left + 1 - min_left)) + min_left;
-
-  // console.log(random_left);
-
-  let min_delay = 17;
-  let max_delay = 25;
-  let random_delay =
-    Math.floor(Math.random() * (max_delay + 1 - min_delay) + min_delay) / 10;
-
-  // console.log(random_delay);
-
-  const list = document.getElementsByClassName("list")[i];
-  list.style.cssText =
-    "animation-duration: " +
-    random_animation +
-    "s; left:" +
-    random_left +
-    "%; animation-delay:" +
-    random_delay +
-    "s;";
-  // console.log(list);
-}
+//呼び出す関数
+let upTrianges = () => {
+  let itemElements = document.getElementsByClassName("item");
+  console.log(itemElements);
+  //itemクラスの要素ごとに同じ処理をする
+  //要素の個数が変更されてもいいようにitemElements.lengthとする
+  for (let i = 0; i < itemElements.length; i++) {
+    let itemElement = itemElements[i];
+    let randomDuration = getRandomParameter(23, 8);
+    let randomLeft = getRandomParameter(100, 0);
+    let randomDelay = getRandomParameter(17, 25) / 10;
+    console.log(itemElement);
+    itemElement.style.cssText = `animation-duration: ${randomDuration}s; animation-delay: ${randomDelay}s; left: ${randomLeft}%; `;
+  }
+};
+//最大値、最小値を引数にとり、最大値~最小値の中でランダムな数値を出力する関数
+let getRandomParameter = (max, min) => {
+  return Math.floor(Math.random() * (max + 1 - min)) + min;
+};
+//関数呼び出し
+upTrianges();
